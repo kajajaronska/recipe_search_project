@@ -4,8 +4,9 @@
             <div class="media content-section">
               <div class="media-body">
 
-                  <h4><a class="article-title" href="#">{{ recipe.recipe_name}}</a></h4>
-                  <h4><a class="article-title" href="#">{{ recipe.recipe_webpage }}</a></h4>
+                  <h4 class="article-title">{{ recipe.recipe_name}}</h4>
+                  <h4><a class="article-title" href="{{ recipe.recipe_webpage }}">Click for recipe</a></h4>
+                  <h4><img class="article-title" src="{{ recipe.recipe_image }}" alt="{{ recipe.recipe_webpage }} Photo"></h4>
 
               </div>
             </div>

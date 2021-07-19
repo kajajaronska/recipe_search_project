@@ -31,7 +31,7 @@ def run():
     results = recipe_search()
 
     # Creating dictionary with keys and empty values
-    recipe_dict = {'recipe_name': '', 'recipe_webpage': ''}
+    recipe_dict = {'recipe_name': '', 'recipe_webpage': '', 'recipe_image': ''}
 
     # Looping through results
     for result in results:
@@ -40,18 +40,22 @@ def run():
         # Adding values on each iteration
         recipe_dict['recipe_name'] = recipe['label']
         recipe_dict['recipe_webpage'] = recipe['url']
+        recipe_dict['recipe_image'] = recipe['image']
 
         # Creating a copy of a dictionary to add unique dictionary to the list on each iteration
         ingr_recipes_database.append(recipe_dict.copy())
 
         print(recipe['label'])
         print(recipe['url'])
-        print()
+        print(recipe['image'])
+
+        # print()
 
 
 run()
 
 print(ingr_recipes_database)
+
 
 # Using Flask to create routes to display our code on the webpage
 app = Flask(__name__)
@@ -64,8 +68,3 @@ def home():
 if __name__ == '__main__':
     app.run(debug=True)
 
-
-# Printing first result from the database for user's chosen ingredient
-# print(ingredient_recipe_database)
-# print(ingredient_recipe_database[0]['recipe']['label'])
-# print(ingredient_recipe_database[0]['recipe']['shareAs'])
