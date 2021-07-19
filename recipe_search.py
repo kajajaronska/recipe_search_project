@@ -16,6 +16,7 @@ parameters = {
     "mealType": mealType
 }
 
+
 # Function containing API request and .json method to return JSON object of the result. N.B. received result is a
 # list of dictionaries
 def recipe_search():
@@ -23,22 +24,38 @@ def recipe_search():
     data = recipe_request.json()
     return data["hits"]
 
-# Creating an empty array to temporarily store users search results
-ingredient_recipes_database = []
 
-# Creating a function calling recipe search function and storing results in the list of dictionaries recipe
+# Creating an empty array to temporarily store users search results
+ingr_recipes_database = []
+
+
+# Creating a function calling recipe_search function and creating dictionary on each loop
+
 def run():
-   results = recipe_search()
-   for result in results:
-       recipe = result['recipe']
-       print(recipe['label'])
-       print(recipe['url'])
-       print()
+    results = recipe_search()
+
+    # Creating dictionary with keys and empty values
+    recipe_dict = {'recipe_name': '', 'recipe_webpage': ''}
+
+    # Looping through results
+    for result in results:
+        recipe = result['recipe']
+
+        # Adding values on each iteration
+        recipe_dict['recipe_name'] = recipe['label']
+        recipe_dict['recipe_webpage'] = recipe['url']
+
+        # Creating a copy of a dictionary to add unique dictionary to the list on each iteration
+        ingr_recipes_database.append(recipe_dict.copy())
+
+        print(recipe['label'])
+        print(recipe['url'])
+        print()
 
 
 run()
 
-#ingredient_recipe_database = recipe_search()
+print(ingr_recipes_database)
 
 
 # Printing first result from the database for user's chosen ingredient
