@@ -1,8 +1,6 @@
 import requests
 from flask import Flask, render_template, url_for
 
-app = Flask(__name__)
-
 # Asking user to enter an ingredient
 ingredient = input('Enter an ingredient: ')
 mealType = input('Choose one of the following: Breakfast, Dinner, Lunch, Snack, Teatime ')
@@ -15,7 +13,6 @@ parameters = {
     "type": "public",
     "mealType": mealType
 }
-
 
 # Function containing API request and .json method to return JSON object of the result. N.B. received result is a
 # list of dictionaries
@@ -30,7 +27,6 @@ ingr_recipes_database = []
 
 
 # Creating a function calling recipe_search function and creating dictionary on each loop
-
 def run():
     results = recipe_search()
 
@@ -56,6 +52,17 @@ def run():
 run()
 
 print(ingr_recipes_database)
+
+# Using Flask to create routes to display our code on the webpage
+app = Flask(__name__)
+
+@app.route("/")
+@app.route("/home")
+def home():
+    return render_template('home.html', recipes=ingr_recipes_database)
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 # Printing first result from the database for user's chosen ingredient
