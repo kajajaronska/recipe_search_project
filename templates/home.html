@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+        {% for recipe in recipes %}
+            <div class="media content-section">
+              <div class="media-body">
+
+                  <h4><a class="article-title" href="#">{{ recipe.recipe_name}}</a></h4>
+                  <h4><a class="article-title" href="#">{{ recipe.recipe_webpage }}</a></h4>
+
+              </div>
+            </div>
+        {% endfor %}
+{% endblock content %}
